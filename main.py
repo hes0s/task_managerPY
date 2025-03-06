@@ -101,9 +101,7 @@ async def delete_one_task(message: Message, state: delete):
 async def delete_task_by_name(message: Message, state: delete):
     await state.update_data(dname=message.text)
     name = message.text
-    print(name)
     cursor.execute("DELETE FROM tasks WHERE TRIM(LOWER(name)) = TRIM(LOWER(?))", (name,))
-    print(f"DELETE FROM tasks WHERE name='{name}'")
     conn.commit()
     await message.reply("Task deleted successfully!", reply_markup=kbs.main)
 
